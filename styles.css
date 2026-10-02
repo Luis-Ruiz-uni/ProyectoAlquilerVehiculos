@@ -1,0 +1,275 @@
+/* ==========================================================================
+   VARIABLES GLOBALES Y RESET
+   ========================================================================== */
+:root {
+  --primary: #ff5a1f;       /* Naranja estilo buscador de viajes */
+  --primary-hover: #e0480f;
+  --bg-color: #f4f6f8;
+  --surface-color: #ffffff;
+  --text-color: #2d3748;
+  --text-muted: #718096;
+  --border-color: #e2e8f0;
+  --success: #38a169;
+  --danger: #e53e3e;
+  --radius: 8px;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+@font-face {
+  font-family: 'FuenteGTASA1';
+  src: url('/OPTIBankGothic-Medium.otf') format('opentype');
+  /* o format('opentype') si es .otf */
+}
+
+@font-face {
+  font-family: 'FuenteGTASA2';
+  src: url('/OLDENGL.TTF') format('truetype');
+  /* o format('opentype') si es .otf */
+}
+
+@font-face {
+  font-family: 'FuenteGTASA2';
+  src: url('/FuturaLTExtraBold.ttf') format('truetype');
+  /* o format('opentype') si es .otf */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   BARRA DE NAVEGACIÓN
+   ========================================================================== */
+.navbar {
+  background-color: var(--surface-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+  font-family: 'FuenteGTASA2', sans-serif;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary);
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin: 0 0.2rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-radius: var(--radius);
+  transition: all 0.2s ease;
+  font-family: 'FuenteGTASA2', sans-serif;
+}
+
+.nav-btn:hover {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.nav-btn.active {
+  background-color: var(--primary);
+  color: white;
+}
+
+/* ==========================================================================
+   CONTENEDOR Y CONTROL DE VISTAS (SPA)
+   ========================================================================== */
+.container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.view {
+  display: none; /* Las vistas inactivas permanecen ocultas */
+}
+
+.view.active {
+  display: block; /* Muestra solo la vista activa */
+}
+
+h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+  font-family: 'FuenteGTASA3', sans-serif;
+}
+
+/* ==========================================================================
+   PANEL DE FILTROS
+   ========================================================================== */
+.filter-panel {
+  background-color: var(--surface-color);
+  padding: 1.25rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  font-family: 'FuenteGTASA1', sans-serif;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 180px;
+}
+
+.filter-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: var(--text-muted);
+}
+
+.filter-group input,
+.filter-group select {
+  padding: 0.6rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  outline: none;
+  font-size: 0.95rem;
+  font-family: 'FuenteGTASA3', sans-serif;
+}
+
+.filter-group input:focus,
+.filter-group select:focus {
+  border-color: var(--primary);
+}
+
+/* ==========================================================================
+   CATÁLOGO - TARJETAS (CARDS)
+   ========================================================================== */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background-color: var(--surface-color);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease;
+  font-family: 'FuenteGTASA1', sans-serif;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  background-color: #eee;
+}
+
+.card-body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.card-body h3 {
+  font-size: 1.2rem;
+  margin: 0.5rem 0 0.25rem;
+}
+
+.card-meta {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.card-chapa {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+.card-price {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--primary);
+  margin: 1rem 0;
+}
+
+.card-price span {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: normal;
+}
+
+/* ==========================================================================
+   BOTONES Y BADGES
+   ========================================================================== */
+.btn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: var(--radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-family: 'FuenteGTASA2', sans-serif;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-secondary {
+  background-color: var(--border-color);
+  color: var(--text-color);
+}
+
+.btn-block {
+  width: 100%;
+  margin-top: auto;
+}
+
+.badge {
+  align-self: flex-start;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 50px;
+  text-transform: uppercase;
+}
+
+.badge-success {
+  background-color: #c6f6d5;
+  color: #22543d;
+}
+
+.badge-danger {
+  background-color: #fed7d7;
+  color: #742a2a;
+}
